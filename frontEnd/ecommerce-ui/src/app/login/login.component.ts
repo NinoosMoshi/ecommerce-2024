@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { UserStorageService } from '../services/storage/user-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +44,12 @@ export class LoginComponent {
 
   this.authService.login(username, password).subscribe({
     next: res =>{
-      this.snackBar.open('Login Success.', 'OK', { duration: 5000});
+      if(UserStorageService.isAdminLoggedIn()){
+        this.router.navigateByUrl("/admin/dashboard")
+      }
+      else if(UserStorageService.isCustomerLoggedIn()){
+        this.router.navigateByUrl("/customer/dashboard")
+      }
     },
     error: err =>{
       this.snackBar.open('Bad credentials.', 'ERROR', { duration: 5000});
