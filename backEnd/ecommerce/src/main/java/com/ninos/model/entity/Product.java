@@ -18,6 +18,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ninos.model.dto.ProductDTO;
 
 @Entity
 @Data
@@ -45,4 +46,14 @@ public class Product {
     private Category category;
 
 
+    public ProductDTO getDto() {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(id);
+        productDTO.setName(name);
+        productDTO.setPrice(price);
+        productDTO.setDescription(description);
+        productDTO.setByetImg(img);
+        productDTO.setCategoryId(category.getId());
+        return productDTO;
+    }
 }

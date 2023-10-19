@@ -19,7 +19,7 @@ import com.ninos.service.admin.category.CategoryService;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/admin")
-public class CategoryAdminController {
+public class AdminCategoryController {
 
 
     private final CategoryService categoryService;
