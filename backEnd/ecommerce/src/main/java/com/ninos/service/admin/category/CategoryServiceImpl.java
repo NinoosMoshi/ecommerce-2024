@@ -1,6 +1,9 @@
 package com.ninos.service.admin.category;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ninos.model.dto.CategoryDTO;
@@ -23,6 +26,10 @@ public class CategoryServiceImpl implements CategoryService{
         return categoryRepository.save(category);
     }
 
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
 
 
 }
